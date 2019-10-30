@@ -26,7 +26,7 @@ public class Mascota implements Serializable {
 	@Column(name = "MascotaId")
 	private int id;
 	
-	//@Column(name = "RAZA")
+	@OneToOne(optional=true, cascade = CascadeType.ALL)
 	private Raza raza;
 	
 	@ManyToMany(mappedBy = "mascotas")

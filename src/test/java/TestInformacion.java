@@ -9,6 +9,7 @@ import clasesDAO.InformacionVeterinariaDAO;
 import clasesDAO.MascotaDAO;
 import clasesDAO.UsuarioDAO;
 import core.CampoFicha;
+import core.Especie;
 import core.Evento;
 import core.Informacion;
 import core.InformacionVeterinaria;
@@ -36,12 +37,20 @@ public class TestInformacion {
 		
 		mascota.setEventos(eventos);
 		
+		Raza raza1 = new Raza("Labrador",new Especie("perro"));
+		
+		Raza raza2 = new Raza("Siamese",new Especie("gato"));
+
+		
+		mascota.setRaza(raza1);
 		
 		
 		Mascota m = mascotaDao.persistir(mascota);
 		
 		Mascota mascota2 = new Mascota(new Raza(), new ArrayList<CampoFicha>(), null,null);
 
+		mascota2.setRaza(raza2);
+		
 		Mascota m2 = mascotaDao.persistir(mascota2);
 		
 		
@@ -82,6 +91,7 @@ public class TestInformacion {
 		Mascota mrec = mascotaDao.recuperar(m.getId());
 		
 		List<Usuario> usuariosDeLaMaschota = mrec.getUsuarios();
+		
 		
 		System.out.print("hola");
 

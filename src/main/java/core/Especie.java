@@ -3,44 +3,37 @@ package core;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "ESPECIE")
+@Entity
+@Table(name = "ESPECIE")
 public class Especie implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	//@Id
-	//@GeneratedValue
-	//@Column(name = "ID")
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
 	private int id;
 	
-	//@Column(name = "DESCRIPCION")
+	@Column(name = "DESCRIPCION")
 	private String descripcion;
-	
-	//@Column(name = "RAZAS")
-	//private List<Raza> razas;
-	
 	
 	public Especie() {
 		
 	}
-	
-	
-	
-	public Especie(String descripcion, List<Raza> razas) {
-		
+	public Especie(String descripcion) {
 		this.descripcion = descripcion;
-		//this.razas = razas;
 	}
-
-
 
 	public int getId() {
 		return id;
@@ -54,10 +47,5 @@ public class Especie implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	//public List<Raza> getRazas() {
-	//	return razas;
-	//}
-	//public void setRazas(List<Raza> razas) {
-	//	this.razas = razas;
-	//}
+
 }
