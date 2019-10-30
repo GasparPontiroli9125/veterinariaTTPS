@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -16,17 +17,16 @@ public class TipoEvento implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 
+
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "ID_TIPOEVENTO")
 	private int id;
 	
 	@Column(name = "NOMBRE")
 	private String nombre;
 	
-	@OneToOne(optional = true, mappedBy="tipoEvento")
-	private Evento evento;
-	
+
 	public TipoEvento() {
 		
 	}
@@ -46,13 +46,5 @@ public class TipoEvento implements Serializable {
 	}
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
-	}
-
-	public Evento getEvento() {
-		return evento;
-	}
-
-	public void setEvento(Evento evento) {
-		this.evento = evento;
-	}
+	}	
 }

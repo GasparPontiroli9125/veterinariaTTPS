@@ -9,23 +9,23 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "ESPECIE")
+//@Entity
+//@Table(name = "ESPECIE")
 public class Especie implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	//@Id
+	//@GeneratedValue
+	//@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "DESCRIPCION")
+	//@Column(name = "DESCRIPCION")
 	private String descripcion;
 	
-	@Column(name = "RAZAS")
-	private List<Raza> razas;
+	//@Column(name = "RAZAS")
+	//private List<Raza> razas;
 	
 	
 	public Especie() {
@@ -37,7 +37,7 @@ public class Especie implements Serializable {
 	public Especie(String descripcion, List<Raza> razas) {
 		
 		this.descripcion = descripcion;
-		this.razas = razas;
+		//this.razas = razas;
 	}
 
 
@@ -54,10 +54,10 @@ public class Especie implements Serializable {
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
 	}
-	public List<Raza> getRazas() {
-		return razas;
-	}
-	public void setRazas(List<Raza> razas) {
-		this.razas = razas;
-	}
+	//public List<Raza> getRazas() {
+	//	return razas;
+	//}
+	//public void setRazas(List<Raza> razas) {
+	//	this.razas = razas;
+	//}
 }

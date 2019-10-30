@@ -2,10 +2,15 @@ package core;
 
 import java.io.Serializable;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -17,7 +22,7 @@ public class Informacion implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "ID_INFORMACION")
 	private int id;
 	
 	@Column(name = "PESO")
@@ -32,14 +37,11 @@ public class Informacion implements Serializable {
 	@Column(name = "INDICACIONES")
 	private String indicaciones;
 	
-	
 	public Informacion() {
 		
 	}
 	
 	public Informacion(double peso, String droga, String diagnostico, String indicaciones) {
-	
-	
 		this.peso = peso;
 		this.droga = droga;
 		this.diagnostico = diagnostico;

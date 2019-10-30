@@ -8,31 +8,31 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "CAMPOFICHA")
+//@Entity
+//@Table(name = "CAMPOFICHA")
 public class CampoFicha implements Serializable {
 
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	//@Id
+	//@GeneratedValue
+	//@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "DATOSPUBLICOS")
+	//@Column(name = "DATOSPUBLICOS")
 	private List<String> datosPublicos;
 	
-	@Column(name = "VALOR")
+	//@Column(name = "VALOR")
 	private String valor;
 	
-	@Column(name = "MASCOTA")
+	//@Column(name = "MASCOTA")
 	private Mascota mascota;
 	
-	@Column(name = "VISIBILIDAD")
+	//@Column(name = "VISIBILIDAD")
 	private Boolean visibilidad;
 	
-	@Column(name = "NOMBRECAMPO")
+	//@Column(name = "NOMBRECAMPO")
 	private NombreCampo nombreCampo;
 	
 	

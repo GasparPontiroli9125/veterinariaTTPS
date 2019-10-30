@@ -8,19 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "TIPOUSUARIO")
+//@Entity
+//@Table(name = "TIPOUSUARIO")
 public class TipoUsuario implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	//@Id
+	//@GeneratedValue
+	//@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "DESCRIPCION")
+	//@Column(name = "DESCRIPCION")
 	private String descripcion;
 	
 	

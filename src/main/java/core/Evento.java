@@ -3,10 +3,13 @@ import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -22,29 +25,32 @@ public class Evento implements Serializable {
 	@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "MASCOTA")
+	@ManyToOne(optional = false)
+	@JoinColumn(name = "MascotaId")
 	private Mascota mascota;
 	
-	@OneToOne(optional = true)
-	@Column(name = "TIPOEVENTO")
+	@OneToOne(optional = true, cascade = CascadeType.ALL)
+	@JoinColumn(name="TipoEventoId")
 	private TipoEvento tipoEvento;
 	
 	@Column(name = "FECHA")
 	private LocalDate fecha;
 	
-	@Column(name = "INFORMACIONES")
-	private List<Informacion> informaciones;
+	//@ManyToOne(cascade = CascadeType.ALL)
+	@OneToOne(optional = true, cascade = CascadeType.ALL)
+	@JoinColumn(name = "InformacionId")
+	private Informacion informacion;
 	
 	public Evento() {
 		
 	}
 	
-	public Evento(Mascota mascota, TipoEvento tipoEvento, LocalDate fecha, List<Informacion> informaciones) {
+	public Evento( Mascota mascota,TipoEvento tipoEvento, LocalDate fecha,Informacion info) {
 		
 		this.mascota = mascota;
 		this.tipoEvento = tipoEvento;
 		this.fecha = fecha;
-		this.informaciones = informaciones;
+		this.informacion = info;
 	}
 
 	public int getId() {
@@ -71,10 +77,12 @@ public class Evento implements Serializable {
 	public void setFecha(LocalDate fecha) {
 		this.fecha = fecha;
 	}
-	public List<Informacion> getInformaciones() {
-		return informaciones;
+	
+	public Informacion getInformacion() {
+		return informacion;
 	}
-	public void setInformaciones(List<Informacion> informaciones) {
-		this.informaciones = informaciones;
+
+	public void setInformacion(Informacion informacion) {
+		this.informacion = informacion;
 	}
 }

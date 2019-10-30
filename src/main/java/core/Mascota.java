@@ -2,14 +2,17 @@ package core;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 @Entity
-@Table(name = "MASCOTA")
+@Table
 public class Mascota implements Serializable {
 	
 	
@@ -17,22 +20,23 @@ public class Mascota implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "ID")
+	@Column(name = "MascotaId")
 	private int id;
 	
-	@Column(name = "RAZA")
+	//@Column(name = "RAZA")
 	private Raza raza;
 	
-	@Column(name = "DUENO")
+	//@Column(name = "DUENO")
 	private Usuario dueño;
 	
-	@Column(name = "FICHA")
-	private List<CampoFicha> ficha;
+	//@Column(name = "FICHA")
+	//private List<CampoFicha> ficha;
 	
-	@Column(name = "VETERINARIO")
+	//@Column(name = "VETERINARIO")
 	private Usuario veterinario;
 	
-	@Column(name = "EVENTOS")
+	
+	@OneToMany(mappedBy = "mascota",cascade = CascadeType.ALL)
 	private List<Evento> eventos;
 	
 	
@@ -46,7 +50,7 @@ public class Mascota implements Serializable {
 		
 		this.raza = raza;
 		this.dueño = dueño;
-		this.ficha = ficha;
+		//this.ficha = ficha;
 		this.veterinario = veterinario;
 		this.eventos = eventos;
 	}
@@ -73,12 +77,12 @@ public class Mascota implements Serializable {
 	public void setDueño(Usuario dueño) {
 		this.dueño = dueño;
 	}
-	public List<CampoFicha> getCampoFicha() {
-		return ficha;
-	}
-	public void setCampoFicha(List<CampoFicha> ficha) {
-		this.ficha = ficha;
-	}
+	//public List<CampoFicha> getCampoFicha() {
+	//	return ficha;
+	//}
+	//public void setCampoFicha(List<CampoFicha> ficha) {
+	//	this.ficha = ficha;
+	//}
 	public Usuario getVeterinario() {
 		return veterinario;
 	}

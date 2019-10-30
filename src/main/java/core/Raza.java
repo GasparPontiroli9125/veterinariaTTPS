@@ -8,21 +8,21 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "RAZA")
+//@Entity
+//@Table(name = "RAZA")
 public class Raza implements Serializable{
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	//@Id
+	//@GeneratedValue
+	//@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "DESCRIPCION")
+	//@Column(name = "DESCRIPCION")
 	private String descripcion;
 	
-	@Column(name = "ESPECIE")
+	//@Column(name = "ESPECIE")
 	private Especie especie;
 	
 	public Raza() {

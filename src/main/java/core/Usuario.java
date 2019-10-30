@@ -8,33 +8,33 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-@Entity
-@Table(name = "USUARIO")
+//@Entity
+//@Table(name = "USUARIO")
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	@Id
-	@GeneratedValue
-	@Column(name = "ID")
+	//@Id
+	//@GeneratedValue
+	//@Column(name = "ID")
 	private int id;
 	
-	@Column(name = "NOMBRE")
+	//@Column(name = "NOMBRE")
 	private String nombre;
 	
-	@Column(name = "APELLIDO")
+	//@Column(name = "APELLIDO")
 	private String apellido;
 	
-	@Column(name = "TELEFONO")
+	//@Column(name = "TELEFONO")
 	private String telefono;
 	
-	@Column(name = "EMAIL")
+	//@Column(name = "EMAIL")
 	private String email;
 	
-	@Column(name = "VETERINARIA")
+	//@Column(name = "VETERINARIA")
 	private InformacionVeterinaria veterinaria;
 	
-	@Column(name = "TIPO")
+	//@Column(name = "TIPO")
 	private TipoUsuario tipo;
 	
 	
