@@ -9,6 +9,8 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,7 +23,7 @@ public class Usuario implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "UsuId")
+	@Column(name = "ID")
 	private int id;
 	
 	@Column
@@ -45,23 +47,22 @@ public class Usuario implements Serializable {
 	@OneToOne(optional = true, cascade = CascadeType.ALL)
 	private InformacionVeterinaria veterinaria;
 	
-	@OneToOne(optional = false,  cascade = CascadeType.ALL)
+	@OneToOne(optional = true,  cascade = CascadeType.ALL)
 	@JoinColumn(name="tipoUsuarioId")
 	private TipoUsuario tipo;
 	
-	@OneToMany(mappedBy = "veterinario", cascade = CascadeType.PERSIST)
-	private List<Mascota> mascotasVeterinario;
-	
-	@OneToMany(mappedBy = "dueno", cascade = CascadeType.PERSIST)
-	private List<Mascota> mascotasDueno;
+	@ManyToMany
+	@JoinTable(name="USUARIO_MASCOTA", 
+	joinColumns=@JoinColumn(name="USU_ID", referencedColumnName="ID"), 
+	inverseJoinColumns=@JoinColumn(name="MASC_ID", referencedColumnName="MascotaId"))  
+	private List<Mascota> mascotas;
 	
 	public Usuario() {
 		
 	}
 	
 	public Usuario(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono,
-			String email, InformacionVeterinaria veterinaria, TipoUsuario tipo, List<Mascota> mascotasVeterinario,
-			List<Mascota> mascotasDueno) {
+			String email, InformacionVeterinaria veterinaria, TipoUsuario tipo, List<Mascota> mascotas) {
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.nombre = nombre;
@@ -70,8 +71,7 @@ public class Usuario implements Serializable {
 		this.email = email;
 		this.veterinaria = veterinaria;
 		this.tipo = tipo;
-		this.mascotasVeterinario = mascotasVeterinario;
-		this.mascotasDueno = mascotasDueno;
+		this.mascotas= mascotas;
 	}
 
 	public TipoUsuario getTipo() {
@@ -119,22 +119,6 @@ public class Usuario implements Serializable {
 		this.id = id;
 	}
 	
-	public List<Mascota> getMascotasVeterinario() {
-		return mascotasVeterinario;
-	}
-
-	public void setMascotasVeterinario(List<Mascota> mascotasVeterinario) {
-		this.mascotasVeterinario = mascotasVeterinario;
-	}
-	
-	public List<Mascota> getMascotasDueno() {
-		return mascotasDueno;
-	}
-
-	public void setMascotasDueno(List<Mascota> mascotasDueno) {
-		this.mascotasDueno = mascotasDueno;
-	}
-
 	public String getNombreUsuario() {
 		return nombreUsuario;
 	}
@@ -149,6 +133,14 @@ public class Usuario implements Serializable {
 
 	public void setContrasena(String contrasena) {
 		this.contrasena = contrasena;
+	}
+
+	public List<Mascota> getMascotas() {
+		return mascotas;
+	}
+
+	public void setMascotas(List<Mascota> mascotas) {
+		this.mascotas = mascotas;
 	}
 
 }

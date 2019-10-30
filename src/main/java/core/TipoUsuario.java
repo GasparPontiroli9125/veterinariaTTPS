@@ -17,10 +17,10 @@ public class TipoUsuario implements Serializable {
 	
 	@Id
 	@GeneratedValue
-	@Column()
+	@Column
 	private int id;
 	
-	@Column()
+	@Column
 	private String descripcion;
 	
 	

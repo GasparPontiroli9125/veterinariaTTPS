@@ -27,7 +27,7 @@ public class TestInformacion {
 		MascotaDAO mascotaDao = DaoFactory.getMascotaDAO();
 		LocalDate d = LocalDate.now();
 		Informacion info = new Informacion(1.1, "ibu", "golpe", "reposo");
-		Mascota mascota = new Mascota(new Raza(), new Usuario(), new ArrayList<CampoFicha>(), new Usuario(),null);
+		Mascota mascota = new Mascota(new Raza(), new ArrayList<CampoFicha>(), null, null);
 		Evento evento = new Evento(mascota,new TipoEvento("consulta"),d,info);
 		Evento evento2 = new Evento(mascota,new TipoEvento("Hola"),d,info);
 		List<Evento> eventos = new ArrayList<Evento>();
@@ -40,7 +40,7 @@ public class TestInformacion {
 		
 		Mascota m = mascotaDao.persistir(mascota);
 		
-		Mascota mascota2 = new Mascota(new Raza(), new Usuario(), new ArrayList<CampoFicha>(), new Usuario(),null);
+		Mascota mascota2 = new Mascota(new Raza(), new ArrayList<CampoFicha>(), null,null);
 
 		Mascota m2 = mascotaDao.persistir(mascota2);
 		
@@ -56,15 +56,18 @@ public class TestInformacion {
 		
 		List<Mascota> listaMascotas = new ArrayList<Mascota>();
 		
-		listaMascotas.add(mascota);
-		listaMascotas.add(mascota2);
 		
-		Usuario adm = new Usuario("usuAdm","123","Juan", "Carlos", "1111", "prueba@prueba.com",null, tipoAdministrador,null,null);
-		Usuario dueno = new Usuario("usuDue","123","Gaspar", "Pontiroli", "222", "gas@par.com", null, tipoDueno,null,null);
-		Usuario vet = new Usuario("usuVet","123","El", "Ima", "333", "ima@22.com", new InformacionVeterinaria(), tipoVeterinario,null,null);
+		Usuario adm = new Usuario("usuAdm","123","Juan", "Carlos", "1111", "prueba@prueba.com",null, tipoAdministrador,null);
+		Usuario dueno = new Usuario("usuDue","123","Gaspar", "Pontiroli", "222", "gas@par.com", null, tipoDueno,null);
+		Usuario vet = new Usuario("usuVet","123","El", "Ima", "333", "ima@22.com", new InformacionVeterinaria(), tipoVeterinario,null);
 		
-		dueno.setMascotasDueno(listaMascotas);
-		vet.setMascotasVeterinario(listaMascotas);
+
+		listaMascotas.add(m);
+		listaMascotas.add(m2);
+		
+		
+		dueno.setMascotas(listaMascotas);
+		vet.setMascotas(listaMascotas);
 		
 		uDao.persistir(adm);
 		uDao.persistir(dueno);
@@ -76,6 +79,9 @@ public class TestInformacion {
 		
 		uDao.persistir(vet);
 		
+		Mascota mrec = mascotaDao.recuperar(m.getId());
+		
+		List<Usuario> usuariosDeLaMaschota = mrec.getUsuarios();
 		
 		System.out.print("hola");
 

@@ -8,6 +8,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
@@ -28,17 +29,8 @@ public class Mascota implements Serializable {
 	//@Column(name = "RAZA")
 	private Raza raza;
 	
-	@OneToOne(optional = false, cascade =  CascadeType.PERSIST)
-	@JoinColumn(name = "duenoId")
-	private Usuario dueno;
-	
-	//@Column(name = "FICHA")
-	//private List<CampoFicha> ficha;
-	
-	@OneToOne(optional = false, cascade =  CascadeType.PERSIST)
-	@JoinColumn(name = "veterinarioId")
-	private Usuario veterinario;
-	
+	@ManyToMany(mappedBy = "mascotas")
+	private List<Usuario> usuarios;
 	
 	@OneToMany( mappedBy = "mascota",cascade = CascadeType.ALL)
 	private List<Evento> eventos;
@@ -48,15 +40,12 @@ public class Mascota implements Serializable {
 		
 	}
 	
-	
-	
-	public Mascota(Raza raza, Usuario dueno, List<CampoFicha> ficha, Usuario veterinario, List<Evento> eventos) {
+	public Mascota(Raza raza, List<CampoFicha> ficha, List<Evento> eventos,List<Usuario>usuarios) {
 		
 		this.raza = raza;
-		this.dueno = dueno;
 		//this.ficha = ficha;
-		this.veterinario = veterinario;
 		this.eventos = eventos;
+		this.usuarios = usuarios;
 	}
 
 
@@ -75,28 +64,24 @@ public class Mascota implements Serializable {
 		this.raza = raza;
 	}
 
-	public Usuario getDueno() {
-		return dueno;
-	}
-	public void setDueno(Usuario dueno) {
-		this.dueno = dueno;
-	}
 	//public List<CampoFicha> getCampoFicha() {
 	//	return ficha;
 	//}
 	//public void setCampoFicha(List<CampoFicha> ficha) {
 	//	this.ficha = ficha;
 	//}
-	public Usuario getVeterinario() {
-		return veterinario;
-	}
-	public void setVeterinario(Usuario veterinario) {
-		this.veterinario = veterinario;
-	}
 	public List<Evento> getEventos() {
 		return eventos;
 	}
 	public void setEventos(List<Evento> eventos) {
 		this.eventos = eventos;
+	}
+
+	public List<Usuario> getUsuarios() {
+		return usuarios;
+	}
+
+	public void setUsuarios(List<Usuario> usuarios) {
+		this.usuarios = usuarios;
 	}
 }
