@@ -8,7 +8,9 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -26,17 +28,19 @@ public class Mascota implements Serializable {
 	//@Column(name = "RAZA")
 	private Raza raza;
 	
-	//@Column(name = "DUENO")
-	private Usuario dueño;
+	@OneToOne(optional = false, cascade =  CascadeType.PERSIST)
+	@JoinColumn(name = "duenoId")
+	private Usuario dueno;
 	
 	//@Column(name = "FICHA")
 	//private List<CampoFicha> ficha;
 	
-	//@Column(name = "VETERINARIO")
+	@OneToOne(optional = false, cascade =  CascadeType.PERSIST)
+	@JoinColumn(name = "veterinarioId")
 	private Usuario veterinario;
 	
 	
-	@OneToMany(mappedBy = "mascota",cascade = CascadeType.ALL)
+	@OneToMany( mappedBy = "mascota",cascade = CascadeType.ALL)
 	private List<Evento> eventos;
 	
 	
@@ -46,10 +50,10 @@ public class Mascota implements Serializable {
 	
 	
 	
-	public Mascota(Raza raza, Usuario dueño, List<CampoFicha> ficha, Usuario veterinario, List<Evento> eventos) {
+	public Mascota(Raza raza, Usuario dueno, List<CampoFicha> ficha, Usuario veterinario, List<Evento> eventos) {
 		
 		this.raza = raza;
-		this.dueño = dueño;
+		this.dueno = dueno;
 		//this.ficha = ficha;
 		this.veterinario = veterinario;
 		this.eventos = eventos;
@@ -71,11 +75,11 @@ public class Mascota implements Serializable {
 		this.raza = raza;
 	}
 
-	public Usuario getDueño() {
-		return dueño;
+	public Usuario getDueno() {
+		return dueno;
 	}
-	public void setDueño(Usuario dueño) {
-		this.dueño = dueño;
+	public void setDueno(Usuario dueno) {
+		this.dueno = dueno;
 	}
 	//public List<CampoFicha> getCampoFicha() {
 	//	return ficha;

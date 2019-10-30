@@ -1,61 +1,78 @@
 package core;
 
 import java.io.Serializable;
+import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "USUARIO")
+@Entity
+@Table()
 public class Usuario implements Serializable {
 	
 	private static final long serialVersionUID = 1L;
 	
-	//@Id
-	//@GeneratedValue
-	//@Column(name = "ID")
+	@Id
+	@GeneratedValue
+	@Column(name = "UsuId")
 	private int id;
 	
-	//@Column(name = "NOMBRE")
+	@Column
+	private String nombreUsuario;
+	
+	@Column
+	private String contrasena;
+	
+	@Column
 	private String nombre;
 	
-	//@Column(name = "APELLIDO")
+	@Column
 	private String apellido;
 	
-	//@Column(name = "TELEFONO")
+	@Column
 	private String telefono;
 	
-	//@Column(name = "EMAIL")
+	@Column
 	private String email;
 	
-	//@Column(name = "VETERINARIA")
+	@OneToOne(optional = true, cascade = CascadeType.ALL)
 	private InformacionVeterinaria veterinaria;
 	
-	//@Column(name = "TIPO")
+	@OneToOne(optional = false,  cascade = CascadeType.ALL)
+	@JoinColumn(name="tipoUsuarioId")
 	private TipoUsuario tipo;
 	
+	@OneToMany(mappedBy = "veterinario", cascade = CascadeType.PERSIST)
+	private List<Mascota> mascotasVeterinario;
+	
+	@OneToMany(mappedBy = "dueno", cascade = CascadeType.PERSIST)
+	private List<Mascota> mascotasDueno;
 	
 	public Usuario() {
 		
 	}
 	
-	
-	
-	public Usuario(String nombre, String apellido, String telefono, String email, InformacionVeterinaria veterinaria,
-			TipoUsuario tipo) {
-		
+	public Usuario(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono,
+			String email, InformacionVeterinaria veterinaria, TipoUsuario tipo, List<Mascota> mascotasVeterinario,
+			List<Mascota> mascotasDueno) {
+		this.nombreUsuario = nombreUsuario;
+		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
 		this.email = email;
 		this.veterinaria = veterinaria;
 		this.tipo = tipo;
+		this.mascotasVeterinario = mascotasVeterinario;
+		this.mascotasDueno = mascotasDueno;
 	}
-
-
 
 	public TipoUsuario getTipo() {
 		return tipo;
@@ -95,11 +112,43 @@ public class Usuario implements Serializable {
 		this.email = email;
 	}
 
-	
 	public int getId() {
 		return id;
 	}
 	public void setId(int id) {
 		this.id = id;
 	}
+	
+	public List<Mascota> getMascotasVeterinario() {
+		return mascotasVeterinario;
+	}
+
+	public void setMascotasVeterinario(List<Mascota> mascotasVeterinario) {
+		this.mascotasVeterinario = mascotasVeterinario;
+	}
+	
+	public List<Mascota> getMascotasDueno() {
+		return mascotasDueno;
+	}
+
+	public void setMascotasDueno(List<Mascota> mascotasDueno) {
+		this.mascotasDueno = mascotasDueno;
+	}
+
+	public String getNombreUsuario() {
+		return nombreUsuario;
+	}
+
+	public void setNombreUsuario(String nombreUsuario) {
+		this.nombreUsuario = nombreUsuario;
+	}
+
+	public String getContrasena() {
+		return contrasena;
+	}
+
+	public void setContrasena(String contrasena) {
+		this.contrasena = contrasena;
+	}
+
 }

@@ -8,23 +8,24 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "INFORMACIONVETERINARIA")
+@Entity
+@Table(name = "INFORMACIONVETERINARIA")
 public class InformacionVeterinaria implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
 	
-	//@Id
-	//@GeneratedValue
-	//@Column(name = "ID")
+	@Id
+	@GeneratedValue
+	@Column(name = "ID")
 	private int id;
 	
-	//@Column(name = "NOMBRECLINICA")
+	@Column(name = "NOMBRECLINICA")
 	private String nombreClinica;
 	
-	//@Column(name = "DOMICILIOCLINICA")
+	@Column(name = "DOMICILIOCLINICA")
 	private String domicilioClinica;
+	
 	
 	
 	

@@ -25,7 +25,7 @@ public class Evento implements Serializable {
 	@Column(name = "ID")
 	private int id;
 	
-	@ManyToOne(optional = false)
+	@ManyToOne(optional = false, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "MascotaId")
 	private Mascota mascota;
 	
@@ -36,7 +36,6 @@ public class Evento implements Serializable {
 	@Column(name = "FECHA")
 	private LocalDate fecha;
 	
-	//@ManyToOne(cascade = CascadeType.ALL)
 	@OneToOne(optional = true, cascade = CascadeType.ALL)
 	@JoinColumn(name = "InformacionId")
 	private Informacion informacion;
@@ -45,7 +44,7 @@ public class Evento implements Serializable {
 		
 	}
 	
-	public Evento( Mascota mascota,TipoEvento tipoEvento, LocalDate fecha,Informacion info) {
+	public Evento(Mascota mascota,TipoEvento tipoEvento, LocalDate fecha,Informacion info) {
 		
 		this.mascota = mascota;
 		this.tipoEvento = tipoEvento;

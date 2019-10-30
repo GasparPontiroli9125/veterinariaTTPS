@@ -8,19 +8,19 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-//@Entity
-//@Table(name = "TIPOUSUARIO")
+@Entity
+@Table()
 public class TipoUsuario implements Serializable {
 	
 	
 	private static final long serialVersionUID = 1L;
 	
-	//@Id
-	//@GeneratedValue
-	//@Column(name = "ID")
+	@Id
+	@GeneratedValue
+	@Column()
 	private int id;
 	
-	//@Column(name = "DESCRIPCION")
+	@Column()
 	private String descripcion;
 	
 	
@@ -32,8 +32,6 @@ public class TipoUsuario implements Serializable {
 		
 		this.descripcion = descripcion;
 	}
-
-
 
 	public int getId() {
 		return id;
