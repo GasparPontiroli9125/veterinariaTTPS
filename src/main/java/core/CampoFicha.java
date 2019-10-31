@@ -21,8 +21,8 @@ public class CampoFicha implements Serializable {
     @Column(name = "CAMPOFICHA_ID")
 	private long id;
 
-	@ManyToOne(cascade = CascadeType.MERGE)
-	@JoinColumn(name = "MascotaId")
+	@ManyToOne(optional = true ,cascade = CascadeType.MERGE)
+	@JoinColumn(name = "MascotaId",nullable = false)
 	private Mascota mascota;
 
 	@ManyToOne(cascade = CascadeType.MERGE)

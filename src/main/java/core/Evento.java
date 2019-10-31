@@ -1,8 +1,6 @@
 package core;
 import java.io.Serializable;
 import java.time.LocalDate;
-import java.util.List;
-
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,12 +23,12 @@ public class Evento implements Serializable {
 	@Column(name = "ID")
 	private int id;
 	
-	@ManyToOne(optional = false, cascade = CascadeType.PERSIST)
+	@ManyToOne(optional = true, cascade = CascadeType.PERSIST)
 	@JoinColumn(name = "MascotaId")
 	private Mascota mascota;
 	
 	@OneToOne(optional = true, cascade = CascadeType.ALL)
-	@JoinColumn(name="TipoEventoId")
+	@JoinColumn(name="TipoEventoId",nullable = false)
 	private TipoEvento tipoEvento;
 	
 	@Column(name = "FECHA")

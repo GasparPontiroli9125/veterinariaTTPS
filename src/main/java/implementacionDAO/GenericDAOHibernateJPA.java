@@ -116,4 +116,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		return resultado;
 
 	}
+	
+	
+	
 }

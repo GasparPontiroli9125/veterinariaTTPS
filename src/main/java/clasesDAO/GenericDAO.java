@@ -19,5 +19,7 @@ public interface GenericDAO<T> {
 	public T recuperar(Serializable id);
 	
 	public List<T> recuperarTodos(String columnOrder);
+
+	
 	
 }

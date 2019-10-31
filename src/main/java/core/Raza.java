@@ -7,8 +7,12 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.sun.istack.NotNull;
 
 @Entity
 @Table(name = "RAZA")
@@ -24,7 +28,8 @@ public class Raza implements Serializable{
 	@Column(name = "DESCRIPCION")
 	private String descripcion;
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL)
+	@OneToOne( optional = true ,cascade = {CascadeType.MERGE})
+	@JoinColumn(nullable = false)
 	private Especie especie;
 	
 	public Raza() {

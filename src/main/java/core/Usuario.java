@@ -11,7 +11,6 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -48,7 +47,7 @@ public class Usuario implements Serializable {
 	private InformacionVeterinaria veterinaria;
 	
 	@OneToOne(optional = true,  cascade = CascadeType.ALL)
-	@JoinColumn(name="tipoUsuarioId")
+	@JoinColumn(name="tipoUsuarioId",nullable = false)
 	private TipoUsuario tipo;
 	
 	@ManyToMany
