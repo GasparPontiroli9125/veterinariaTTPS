@@ -57,9 +57,7 @@ public class Usuario implements Serializable {
 	inverseJoinColumns=@JoinColumn(name="MASC_ID", referencedColumnName="MascotaId"))  
 	private List<Mascota> mascotas;
 	
-	public Usuario() {
-		
-	}
+	public Usuario() {}
 	
 	public Usuario(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono,
 			String email, InformacionVeterinaria veterinaria, TipoUsuario tipo, List<Mascota> mascotas) {
@@ -77,6 +75,7 @@ public class Usuario implements Serializable {
 	public TipoUsuario getTipo() {
 		return tipo;
 	}
+	
 	public void setTipo(TipoUsuario tipo) {
 		this.tipo = tipo;
 	}
@@ -84,30 +83,39 @@ public class Usuario implements Serializable {
 	public InformacionVeterinaria getVeterinaria() {
 		return veterinaria;
 	}
+	
 	public void setVeterinaria(InformacionVeterinaria veterinaria) {
 		this.veterinaria = veterinaria;
 	}
+	
 	public String getNombre() {
 		return nombre;
 	}
+	
 	public void setNombre(String nombre) {
 		this.nombre = nombre;
 	}
+	
 	public String getApellido() {
 		return apellido;
 	}
+	
 	public void setApellido(String apellido) {
 		this.apellido = apellido;
 	}
+	
 	public String getTelefono() {
 		return telefono;
 	}
+	
 	public void setTelefono(String telefono) {
 		this.telefono = telefono;
 	}
+	
 	public String getEmail() {
 		return email;
 	}
+	
 	public void setEmail(String email) {
 		this.email = email;
 	}
@@ -115,6 +123,7 @@ public class Usuario implements Serializable {
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
@@ -142,5 +151,4 @@ public class Usuario implements Serializable {
 	public void setMascotas(List<Mascota> mascotas) {
 		this.mascotas = mascotas;
 	}
-
 }

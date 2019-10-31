@@ -15,8 +15,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "INFORMACION")
-public class Informacion implements Serializable {
-	
+public class Informacion implements Serializable {	
 
 	private static final long serialVersionUID = 1L;
 	
@@ -37,9 +36,7 @@ public class Informacion implements Serializable {
 	@Column(name = "INDICACIONES")
 	private String indicaciones;
 	
-	public Informacion() {
-		
-	}
+	public Informacion() {}
 	
 	public Informacion(double peso, String droga, String diagnostico, String indicaciones) {
 		this.peso = peso;
@@ -59,26 +56,32 @@ public class Informacion implements Serializable {
 	public double getPeso() {
 		return peso;
 	}
+	
 	public void setPeso(double peso) {
 		this.peso = peso;
 	}
+	
 	public String getDroga() {
 		return droga;
 	}
+	
 	public void setDroga(String droga) {
 		this.droga = droga;
 	}
+	
 	public String getDiagnostico() {
 		return diagnostico;
 	}
+	
 	public void setDiagnostico(String diagnostico) {
 		this.diagnostico = diagnostico;
 	}
+	
 	public String getIndicaciones() {
 		return indicaciones;
 	}
+	
 	public void setIndicaciones(String indicaciones) {
 		this.indicaciones = indicaciones;
 	}
-
 }

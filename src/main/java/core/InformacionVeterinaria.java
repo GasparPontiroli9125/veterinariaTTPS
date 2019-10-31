@@ -24,42 +24,37 @@ public class InformacionVeterinaria implements Serializable {
 	private String nombreClinica;
 	
 	@Column(name = "DOMICILIOCLINICA")
-	private String domicilioClinica;
+	private String domicilioClinica;	
 	
-	
-	
-	
-	public InformacionVeterinaria() {
-		
-	}
+	public InformacionVeterinaria() {}
 	
 	public InformacionVeterinaria(String nombreClinica, String domicilioClinica) {
 		
 		this.nombreClinica = nombreClinica;
 		this.domicilioClinica = domicilioClinica;
 	}
-
-
-
+	
 	public int getId() {
 		return id;
 	}
+	
 	public void setId(int id) {
 		this.id = id;
 	}
-	
 
 	public String getNombreClinica() {
 		return nombreClinica;
 	}
+	
 	public void setNombreClinica(String nombreClinica) {
 		this.nombreClinica = nombreClinica;
 	}
+	
 	public String getDomicilioClinica() {
 		return domicilioClinica;
 	}
+	
 	public void setDomicilioClinica(String domicilioClinica) {
 		this.domicilioClinica = domicilioClinica;
 	}
-
 }
