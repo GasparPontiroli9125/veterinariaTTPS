@@ -35,6 +35,19 @@ public class CampoFicha implements Serializable {
 	@Column(name = "VALOR")
 	private String valor;
 	
+	public CampoFicha() {
+		
+	}
+	
+	
+	public CampoFicha(Mascota mascota, NombreCampo campo, Boolean visibilidad, String valor) {
+		
+		this.mascota = mascota;
+		this.campo = campo;
+		this.visibilidad = visibilidad;
+		this.valor = valor;
+	}
+
 	public Mascota getMascota() {
 		return mascota;
 	}

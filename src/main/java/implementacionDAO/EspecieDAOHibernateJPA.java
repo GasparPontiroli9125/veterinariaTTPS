@@ -1,7 +1,5 @@
 package implementacionDAO;
 
-import java.io.Serializable;
-
 import javax.persistence.Query;
 
 import clasesDAO.EspecieDAO;
@@ -17,7 +15,6 @@ public class EspecieDAOHibernateJPA extends GenericDAOHibernateJPA<Especie> impl
 				("SELECT e FROM " +  getPersistentClass().getName() +" e WHERE e.descripcion='"+ descripcion+"'" );
 	
 		
-		@SuppressWarnings("unchecked")
 		Especie resultado = (Especie) consulta.getSingleResult();
 		return resultado;
 	}	

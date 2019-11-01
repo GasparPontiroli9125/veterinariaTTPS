@@ -23,12 +23,12 @@ public class Evento implements Serializable {
 	@Column(name = "ID")
 	private int id;
 	
-	@ManyToOne(optional = true, cascade = CascadeType.PERSIST)
+	@ManyToOne(optional = true, cascade = CascadeType.MERGE)
 	@JoinColumn(name = "MascotaId")
 	private Mascota mascota;
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL)
-	@JoinColumn(name="TipoEventoId",nullable = false)
+	@ManyToOne(optional = true, cascade = CascadeType.MERGE)
+	@JoinColumn(name="TipoEventoId")
 	private TipoEvento tipoEvento;
 	
 	@Column(name = "FECHA")

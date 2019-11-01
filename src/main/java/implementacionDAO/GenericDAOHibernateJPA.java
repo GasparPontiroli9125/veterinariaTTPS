@@ -7,13 +7,7 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.ParameterExpression;
-import javax.persistence.criteria.Root;
-
 import clasesDAO.GenericDAO;
-import core.Especie;
 
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	
@@ -68,7 +62,8 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		try {
 			tx = em.getTransaction();
 			tx.begin();
-			em.remove(entity);
+			em.remove(em.contains(entity) ? entity : em.merge(entity));
+//			em.remove(entity);
 			tx.commit();
 		} catch (RuntimeException e) {
 			if (tx != null && tx.isActive())
@@ -119,6 +114,7 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		return resultado;
 	}
 	
+	@SuppressWarnings("rawtypes")
 	@Override
 	public T recuperarPorNombreDescripcion(Class entidad, String campo, String valor)
 	{
