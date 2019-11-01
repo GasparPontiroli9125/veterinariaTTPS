@@ -9,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -21,15 +22,14 @@ public class Mascota implements Serializable {
 
 	@Id
 	@GeneratedValue
-	@Column(name = "MascotaId")
+	@Column(name = "MASCOTA_ID")
 	private int id;
 	
-	@OneToOne(optional = true, cascade = CascadeType.ALL)
-	@JoinColumn(nullable = false)
+	@OneToOne(cascade = CascadeType.MERGE)
 	private Raza raza;
 	
-	@ManyToMany(mappedBy = "mascotas")
-	private List<Usuario> usuarios;
+	@Column(name = "QR")
+	private String qr;
 	
 	@OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
 	private List<Evento> eventos;	
@@ -37,18 +37,17 @@ public class Mascota implements Serializable {
 	@OneToMany(mappedBy = "mascota", cascade = CascadeType.ALL)
     private List<CampoFicha> ficha;
 	
+	@ManyToOne(cascade = CascadeType.MERGE)
+	@JoinColumn(name = "veterinario_id")
+    private Usuario veterinario;
+	
+	@OneToOne(cascade = CascadeType.MERGE)
+    private Usuario duenio;
+	
 	public Mascota() {}
 	
-	public Mascota(Raza raza, List<CampoFicha> ficha, List<Evento> eventos,List<Usuario>usuarios) {
-		
-		this.raza = raza;
-		this.ficha = ficha;
-		this.eventos = eventos;
-		this.usuarios = usuarios;
-	}
-	
-	public Mascota(List<Usuario>usuarios) {
-		this.usuarios = usuarios;
+	public Mascota(Raza unaRaza) {		
+		this.raza = unaRaza;
 	}
 
 	public int getId() {
@@ -83,11 +82,35 @@ public class Mascota implements Serializable {
 		this.eventos = eventos;
 	}
 
-	public List<Usuario> getUsuarios() {
-		return usuarios;
+	public List<CampoFicha> getFicha() {
+		return ficha;
 	}
 
-	public void setUsuarios(List<Usuario> usuarios) {
-		this.usuarios = usuarios;
+	public void setFicha(List<CampoFicha> ficha) {
+		this.ficha = ficha;
+	}
+
+	public String getQr() {
+		return qr;
+	}
+
+	public void setQr(String qr) {
+		this.qr = qr;
+	}
+
+	public Usuario getVeterinario() {
+		return veterinario;
+	}
+
+	public void setVeterinario(Usuario veterinario) {
+		this.veterinario = veterinario;
+	}
+
+	public Usuario getDuenio() {
+		return duenio;
+	}
+
+	public void setDuenio(Usuario duenio) {
+		this.duenio = duenio;
 	}
 }

@@ -36,15 +36,11 @@ public class Raza implements Serializable{
 		
 	}
 	
-	
-	
 	public Raza(String descripcion, Especie especie) {
 		
 		this.descripcion = descripcion;
 		this.especie = especie;
 	}
-
-
 
 	public int getId() {
 		return id;

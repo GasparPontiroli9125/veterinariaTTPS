@@ -7,8 +7,13 @@ import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
 import javax.persistence.Query;
 import javax.persistence.TypedQuery;
+import javax.persistence.criteria.CriteriaBuilder;
+import javax.persistence.criteria.CriteriaQuery;
+import javax.persistence.criteria.ParameterExpression;
+import javax.persistence.criteria.Root;
 
 import clasesDAO.GenericDAO;
+import core.Especie;
 
 public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 	
@@ -102,8 +107,6 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 				boolean exists = booleanQuery.getSingleResult();
 				
 				return exists;
-		
-
 	}
 
 	@Override
@@ -114,9 +117,18 @@ public class GenericDAOHibernateJPA<T> implements GenericDAO<T> {
 		@SuppressWarnings("unchecked")
 		T resultado = (T) consulta.getSingleResult();
 		return resultado;
-
 	}
 	
-	
-	
+	@Override
+	public T recuperarPorNombreDescripcion(Class entidad, String campo, String valor)
+	{
+		EntityManager entityManager = EMF.getEMF().createEntityManager();
+		
+		Query consulta= entityManager.createQuery
+				("SELECT e FROM " +  getPersistentClass().getName() +" e WHERE e."+ campo  +"= '"+ valor +"'" );
+	    
+		@SuppressWarnings("unchecked")
+		T resultado = (T) consulta.getSingleResult();
+		return resultado;
+	}
 }

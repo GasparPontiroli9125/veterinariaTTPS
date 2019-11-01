@@ -20,6 +20,5 @@ public interface GenericDAO<T> {
 	
 	public List<T> recuperarTodos(String columnOrder);
 
-	
-	
+	public T recuperarPorNombreDescripcion(Class entidad, String campo, String valor);	
 }

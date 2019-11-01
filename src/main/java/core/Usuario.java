@@ -1,6 +1,7 @@
 package core;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -11,6 +12,8 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -46,29 +49,27 @@ public class Usuario implements Serializable {
 	@OneToOne(optional = true, cascade = CascadeType.ALL)
 	private InformacionVeterinaria veterinaria;
 	
-	@OneToOne(optional = true,  cascade = CascadeType.ALL)
-	@JoinColumn(name="tipoUsuarioId",nullable = false)
+	@ManyToOne(optional = true, cascade = CascadeType.MERGE)
+	@JoinColumn(name = "TIPO_ID")
 	private TipoUsuario tipo;
 	
-	@ManyToMany
-	@JoinTable(name="USUARIO_MASCOTA", 
-	joinColumns=@JoinColumn(name="USU_ID", referencedColumnName="ID"), 
-	inverseJoinColumns=@JoinColumn(name="MASC_ID", referencedColumnName="MascotaId"))  
+	@OneToMany(mappedBy="duenio", cascade = CascadeType.ALL)
 	private List<Mascota> mascotas;
+	
+	@OneToMany(mappedBy="veterinario", cascade = CascadeType.ALL)
+	private List<Mascota> pacientes;
 	
 	public Usuario() {}
 	
 	public Usuario(String nombreUsuario, String contrasena, String nombre, String apellido, String telefono,
-			String email, InformacionVeterinaria veterinaria, TipoUsuario tipo, List<Mascota> mascotas) {
+			String email, TipoUsuario tipo) {
 		this.nombreUsuario = nombreUsuario;
 		this.contrasena = contrasena;
 		this.nombre = nombre;
 		this.apellido = apellido;
 		this.telefono = telefono;
 		this.email = email;
-		this.veterinaria = veterinaria;
 		this.tipo = tipo;
-		this.mascotas= mascotas;
 	}
 
 	public TipoUsuario getTipo() {
@@ -149,5 +150,9 @@ public class Usuario implements Serializable {
 
 	public void setMascotas(List<Mascota> mascotas) {
 		this.mascotas = mascotas;
+	}
+
+	public List<Mascota> getPacientes() {
+		return pacientes;
 	}
 }

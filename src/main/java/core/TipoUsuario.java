@@ -21,8 +21,7 @@ public class TipoUsuario implements Serializable {
 	private int id;
 	
 	@Column
-	private String descripcion;
-	
+	private String descripcion;	
 	
 	public TipoUsuario() {
 		

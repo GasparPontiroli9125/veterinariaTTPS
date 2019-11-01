@@ -7,8 +7,6 @@ import javax.persistence.Query;
 import clasesDAO.EspecieDAO;
 import core.Especie;
 
-
-
 public class EspecieDAOHibernateJPA extends GenericDAOHibernateJPA<Especie> implements EspecieDAO {
 	public EspecieDAOHibernateJPA() {
 		super(Especie.class);
@@ -22,7 +20,5 @@ public class EspecieDAOHibernateJPA extends GenericDAOHibernateJPA<Especie> impl
 		@SuppressWarnings("unchecked")
 		Especie resultado = (Especie) consulta.getSingleResult();
 		return resultado;
-	}
-	
-	
+	}	
 }
